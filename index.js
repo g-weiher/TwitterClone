@@ -2,25 +2,23 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const express = require("express");
-const pool = require("./dbconfig");
-const app = express();
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
-var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-
+//const pool = require("./dbconfig");
 const messagesRoutes = require("./Routes/messages");
 const userRoutes = require("./Routes/users");
 
+
+const app = express();
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use("/messages", messagesRoutes);
 app.use("/users", userRoutes);
-app.get("/usertest", async (req, res) => {
-  const result = await pool.query("SELECT * FROM users");
-  res.send(result);
-});
-app.get("/", (_, res) => {
-  res.send("hello there");
+app.get("/", async (_, res) => {
+  res.send("welcome to our message api");
 });
 
 const { PORT } = process.env;
