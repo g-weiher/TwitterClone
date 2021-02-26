@@ -11,7 +11,8 @@ module.exports = {
       );
       res.json({
         message:
-          "New user with the following values:" + [name, email, password, image],
+          "New user with the following values:" +
+          [name, email, password, image],
         code: 200,
         data: answerDB.rows,
       });
@@ -43,6 +44,21 @@ module.exports = {
         message: "Retrieved all user",
         code: 200,
         data: answerDB.rows,
+      });
+    } catch (e) {
+      console.log(e);
+      res.sendStatus(404);
+    }
+  },
+  getRandomUser: async (_, res) => {
+    try {
+      const answerDB = await pool.query("SELECT * FROM users");
+      var user =
+        answerDB.rows[Math.floor(Math.random() * answerDB.rows.length)];
+      res.json({
+        message: "Retrieved user",
+        code: 200,
+        data: user,
       });
     } catch (e) {
       console.log(e);
