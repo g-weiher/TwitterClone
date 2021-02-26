@@ -7,8 +7,10 @@ const app = express();
 
 
 const messagesRoutes = require("./Routes/messages");
+const userRoutes = require("./Routes/users");
 
 app.use("/messages", messagesRoutes);
+app.use("/users", userRoutes);
 app.get("/usertest", async (req, res) => {
   const result = await pool.query("SELECT * FROM users");
   res.send(result);
