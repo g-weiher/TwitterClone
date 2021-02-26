@@ -5,6 +5,10 @@ const express = require("express");
 const pool = require("./dbconfig");
 const app = express();
 
+var bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 
 const messagesRoutes = require("./Routes/messages");
 const userRoutes = require("./Routes/users");
