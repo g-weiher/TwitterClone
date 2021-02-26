@@ -3,6 +3,9 @@ const app = express();
 
 const dotenv = require("dotenv");
 dotenv.config();
+
+const messagesRoutes = require("./Routes/messages");
+app.use("/messages", messagesRoutes);
 app.get("/", (_, res) => {
   res.send("hello there");
 });
