@@ -7,7 +7,7 @@ module.exports = {
     try {
       const answerDB = await pool.query(
         "INSERT INTO users (name, email, password, image) VALUES ( $1, $2, $3, $4)",
-        [name, email, password]
+        [name, email, password, image]
       );
       res.json({
         message:
