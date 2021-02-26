@@ -11,7 +11,8 @@ module.exports = {
       );
       res.json({
         message:
-          "New user with the following values:" + [name, email, password, image],
+          "New user with the following values:" +
+          [name, email, password, image],
         code: 200,
         data: answerDB.rows,
       });
@@ -51,11 +52,13 @@ module.exports = {
   },
   getRandomUser: async (_, res) => {
     try {
+
       const answerDB = await pool.query("SELECT * FROM users ORDER BY RANDOM() LIMIT 1");
       res.json({
         message: "Retrieved all user",
         code: 200,
         data: answerDB.rows,
+
       });
     } catch (e) {
       console.log(e);
