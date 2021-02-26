@@ -42,7 +42,6 @@ module.exports = {
         res.json({
           message: "message not found",
           code: 404,
-          data: answerDB.rows,
         });
         return;
       }
